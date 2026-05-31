@@ -4,18 +4,6 @@ A web-based statistical analysis tool supporting descriptive statistics, ANOVA, 
 
 ## Quick Start
 
-1. **Install uv** (if not installed):
-   ```
-   pip install uv
-   ```
-
-2. **Start the server**:
-   ```
-   uv run main.py
-   ```
-
-3. **Open** http://localhost:8000 in your browser.
-
 ## Step-by-Step Usage
 
 ### 1. Upload Data
@@ -59,5 +47,3 @@ Each method shows relevant fields after selection:
 - Click **Export Excel** to download the current sheet.
 - Click **PDF Report** to print or save a PDF report of results.
 
-## Requirements (auto-installed by uv)
-- fastapi, uvicorn, pandas, numpy, scipy, statsmodels, scikit-learn, openpyxl, python-multipart, jinja2
