@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scientific Data Analyzer</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="header-left">
+      <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M8 24 L16 8 L24 24" stroke="var(--accent)" stroke-width="2" fill="none"/><circle cx="16" cy="8" r="2" fill="var(--accent)"/><circle cx="8" cy="24" r="2" fill="var(--accent)"/><circle cx="24" cy="24" r="2" fill="var(--accent)"/></svg>
+      </div>
+      <h1>Scientific Data Analyzer</h1>
+    </div>
+    <div class="header-right">
+      <span class="status-badge" id="statusBadge">Ready</span>
+      <button class="btn-icon" id="themeToggle" title="Toggle theme">&#9790;</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Upload Section -->
+    <section id="uploadSection" class="card upload-card">
+      <div id="dropZone" class="drop-zone">
+        <div class="drop-content">
+          <svg width="48" height="48" viewBox="0 0 48 48"><path d="M24 4 L24 32 M12 20 L24 8 L36 20" stroke="var(--accent)" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M8 28 L8 40 L40 40 L40 28" stroke="var(--accent)" stroke-width="2" fill="none"/></svg>
+          <p>Drag & drop your Excel file here</p>
+          <span>or</span>
+          <label class="btn btn-primary" for="fileInput">Browse Files</label>
+          <input type="file" id="fileInput" accept=".xlsx,.xls" hidden>
+          <small>Supports .xlsx and .xls files with multiple sheets</small>
+        </div>
+      </div>
+      <div id="fileInfo" class="file-info" style="display:none">
+        <div class="file-badge"><span id="fileName"></span><button class="btn-icon" id="removeFile">&times;</button></div>
+      </div>
+    </section>
+
+    <!-- Analysis Dashboard -->
+    <section id="dashboard" class="dashboard" style="display:none">
+      <!-- Sheet Selector -->
+      <div class="card sheet-bar">
+        <label>Sheet:</label>
+        <div id="sheetTabs" class="sheet-tabs"></div>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Left: Data Preview -->
+        <div class="card data-preview-card">
+          <h3><span class="gradient-text">Data Preview</span></h3>
+          <div class="table-wrapper">
+            <table id="dataPreview"><thead></thead><tbody></tbody></table>
+          </div>
+          <small id="rowCount"></small>
+        </div>
+
+        <!-- Right: Configuration Panel -->
+        <div class="card config-card">
+          <h3><span class="gradient-text">Analysis Configuration</span></h3>
+          <div class="config-form">
+            <div class="form-group">
+              <label>Statistical Method</label>
+              <select id="methodSelect" class="form-select">
+                <option value="descriptive">Descriptive Statistics</option>
+                <option value="anova">One-way ANOVA</option>
+                <option value="anova_twoway">Two-way ANOVA</option>
+                <option value="regression">Multiple Linear Regression</option>
+                <option value="pca">Principal Component Analysis (PCA)</option>
+                <option value="sem">Path Analysis (SEM)</option>
+                <option value="ahp">Analytic Hierarchy Process (AHP)</option>
+              </select>
+            </div>
+            <div id="configFields" class="config-fields"></div>
+            <button id="runAnalysis" class="btn btn-primary btn-block">Run Analysis</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Area -->
+      <div id="resultsArea" style="display:none">
+        <div class="results-header">
+          <h2><span class="gradient-text">Results</span></h2>
+          <div class="results-actions">
+            <button id="exportExcelBtn" class="btn btn-secondary">Export Excel</button>
+            <button id="printReportBtn" class="btn btn-secondary">PDF Report</button>
+          </div>
+        </div>
+        <div id="resultsContent" class="results-content"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="loadingOverlay" class="loading-overlay" style="display:none">
+    <div class="spinner"></div>
+    <p>Computing...</p>
+  </div>
+</div>
+<script src="/static/app.js?v=3"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" async onerror="window.__chartJsError=true"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" async onerror="window.__xlsxError=true"></script>
+</body>
+</html>
