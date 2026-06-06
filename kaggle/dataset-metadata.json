@@ -1,0 +1,6 @@
+{
+  "title": "Scientific Data Analyzer - Example Dataset",
+  "id": "hassan244973/scientific-data-analyzer-example",
+  "licenses": [{"name": "CC0-1.0"}],
+  "description": "Example Excel dataset for the Scientific Data Analyzer tool. Contains multiple sheets suitable for testing Descriptive Statistics, ANOVA, Regression, PCA, SEM, and AHP analysis methods."
+}
